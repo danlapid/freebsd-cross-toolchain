@@ -4,7 +4,7 @@ sudo apt-get update
 sudo apt-get install -y build-essential wget git flex bison texinfo coreutils diffutils gcc gettext make perl sed binutils libgmp3-dev libmpc-dev libmpfr-dev libisl-dev
 
 export TARGET=i386-freebsd10
-export PREFIX=/usr/cross-freebsd
+export PREFIX=$PWD/cross-freebsd
 export PATH=$PREFIX/bin:$PATH
 mkdir -p $PREFIX{,/lib,/usr/lib,/usr/include}
 
