@@ -1,0 +1,19 @@
+name: Build Toolchain
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Build Toolchain
+              run: |
+                chmod +x make_toolchain.sh
+                ./make_toolchain.sh
