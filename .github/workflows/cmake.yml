@@ -8,6 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ARCH: [i386, x86_64]
+        OSVERSION: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
     steps:
       - name: Checkout repository
@@ -17,9 +21,12 @@ jobs:
         run: |
           chmod +x make_toolchain.sh
           ./make_toolchain.sh
+        env:
+          ARCH: ${{ matrix.ARCH }}
+          OSVERSION: ${{ matrix.OSVERSION }}
 
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: 'i386-freebsd10'
-          path: i386-freebsd10.tar.gz
+          name: '${{ matrix.ARCH }}-freebsd${{ matrix.OSVERSION }}'
+          path: '${{ matrix.ARCH }}-freebsd${{ matrix.OSVERSION }}.tar.gz'
