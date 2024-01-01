@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 sudo apt-get update
 sudo apt-get install -y build-essential wget git flex bison texinfo coreutils diffutils gcc gettext make perl sed binutils libgmp3-dev libmpc-dev libmpfr-dev libisl-dev
@@ -16,7 +17,9 @@ if [ $ARCH = "x86_64" ]; then
 else
     : ${ARCH_ALIAS:=$ARCH}
 fi
-mkdir -p $PREFIX{,/lib,/usr/lib,/usr/include}
+mkdir -p $PREFIX/lib
+mkdir -p $PREFIX/usr/lib
+mkdir -p $PREFIX/usr/include
 
 
 mkdir base/
