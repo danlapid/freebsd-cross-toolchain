@@ -34,9 +34,11 @@ fi
 cp -r base/usr/include $PREFIX/usr/
 cp -r base/usr/lib $PREFIX/usr/
 cp -r base/lib $PREFIX/ || true
+ln -s $PREFIX/usr/include/locale.h $PREFIX/usr/include/xlocale.h || true
 cd $PREFIX/usr/lib
 find . -xtype l | xargs ls -l | grep ' /lib/' | awk '{print "ln -sf ../.." $11 " " $9}' | /bin/sh
 cd ../../../
+
 
 wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.xz
 tar -xf binutils-$BINUTILS_VERSION.tar.xz
