@@ -15,7 +15,7 @@ sudo apt-get install -y build-essential wget git flex bison texinfo coreutils di
 if [ $ARCH = "x86_64" ]; then
     : ${ARCH_ALIAS:=amd64}
 else
-    : ${ARCH_ALIAS:=$ARCH}
+    : ${ARCH_ALIAS:=i386}
 fi
 mkdir -p $PREFIX/lib
 mkdir -p $PREFIX/usr/lib
