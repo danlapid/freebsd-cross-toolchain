@@ -4,7 +4,7 @@ set -e
 sudo apt-get update
 sudo apt-get install -y build-essential wget git flex bison texinfo coreutils diffutils gcc gettext make perl sed binutils libgmp3-dev libmpc-dev libmpfr-dev libisl-dev
 
-: ${ARCH:=i386}
+: ${ARCH:=i686}
 : ${OS:=freebsd}
 : ${OSVERSION:=10}
 : ${GCC_VERSION:=13.2.0}
@@ -52,7 +52,7 @@ tar -xf gcc-$GCC_VERSION.tar.xz
 cd gcc-$GCC_VERSION
 ./contrib/download_prerequisites
 mkdir build; cd build
-../configure --without-headers --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --disable-nls --enable-libssp --enable-gold --enable-ld --target=$TARGET --prefix=$PREFIX --disable-libgomp --with-sysroot=$PREFIX --disable-multilib --disable-libsanitizer --disable-libquadmath --disable-libatomic
+../configure --without-headers --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --disable-nls --enable-libssp --enable-gold --enable-ld --target=$TARGET --prefix=$PREFIX --disable-libgomp --with-sysroot=$PREFIX --disable-multilib --disable-libsanitizer
 LD_LIBRARY_PATH=$PREFIX/lib make -j 2
 make install
 cd ../../
