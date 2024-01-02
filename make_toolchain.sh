@@ -40,22 +40,22 @@ cd ../../../
 
 wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.xz
 tar -xf binutils-$BINUTILS_VERSION.tar.xz
-cd binutils-$BINUTILS_VERSION
-mkdir build; cd build
-../configure --enable-libssp --enable-gold --enable-ld --target=$TARGET --prefix=$PREFIX --with-sysroot=$PREFIX --disable-multilib
+mkdir build-binutils; cd build-binutils
+../binutils-$BINUTILS_VERSION/configure --enable-libssp --enable-gold --enable-ld --target=$TARGET --prefix=$PREFIX --with-sysroot=$PREFIX --disable-multilib
 make -j 3
 make install
-cd ../../
+cd ../
 
 wget https://gcc.gnu.org/pub/gcc/releases/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.xz
 tar -xf gcc-$GCC_VERSION.tar.xz
 cd gcc-$GCC_VERSION
 ./contrib/download_prerequisites
-mkdir build; cd build
-../configure --without-headers --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --disable-nls --enable-libssp --enable-gold --enable-ld --target=$TARGET --prefix=$PREFIX --disable-libgomp --with-sysroot=$PREFIX --disable-multilib --disable-libsanitizer
+cd ../
+mkdir build-gcc; cd build-gcc
+../gcc-$GCC_VERSION/configure --without-headers --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --disable-nls --enable-libssp --enable-gold --enable-ld --target=$TARGET --prefix=$PREFIX --disable-libgomp --with-sysroot=$PREFIX --disable-multilib --disable-libsanitizer
 LD_LIBRARY_PATH=$PREFIX/lib make -j 2
 make install
-cd ../../
+cd ../
 
 tar -czf $TARGET.tar.gz -C $PREFIX .
 echo "FreeBSD cross-compilation toolchain created successfully!"
