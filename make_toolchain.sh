@@ -52,7 +52,7 @@ tar -xf gcc-$GCC_VERSION.tar.xz
 cd gcc-$GCC_VERSION
 ./contrib/download_prerequisites
 mkdir build; cd build
-../configure --without-headers --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --disable-nls --enable-libssp --enable-gold --enable-ld --target=$TARGET --prefix=$PREFIX --disable-libgomp --with-sysroot=$PREFIX --disable-multilib --disable-libsanitizer --disable-libquadmath
+../configure --without-headers --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --disable-nls --enable-libssp --enable-gold --enable-ld --target=$TARGET --prefix=$PREFIX --disable-libgomp --with-sysroot=$PREFIX --disable-multilib --disable-libsanitizer --disable-libquadmath --disable-libatomic
 LD_LIBRARY_PATH=$PREFIX/lib make -j 2
 make install
 cd ../../
