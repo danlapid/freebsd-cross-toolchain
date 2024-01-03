@@ -34,7 +34,6 @@ fi
 cp -r base/usr/include $PREFIX/usr/
 cp -r base/usr/lib $PREFIX/usr/
 cp -r base/lib $PREFIX/ || true
-ln -s $PREFIX/usr/include/locale.h $PREFIX/usr/include/xlocale.h || true
 cd $PREFIX/usr/lib
 find . -xtype l | xargs ls -l | grep ' /lib/' | awk '{print "ln -sf ../.." $11 " " $9}' | /bin/sh
 cd ../../../
@@ -54,7 +53,7 @@ cd gcc-$GCC_VERSION
 ./contrib/download_prerequisites
 cd ../
 mkdir build-gcc; cd build-gcc
-../gcc-$GCC_VERSION/configure --without-headers --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --disable-nls --enable-libssp --enable-gold --enable-ld --target=$TARGET --prefix=$PREFIX --disable-libgomp --with-sysroot=$PREFIX --disable-multilib --disable-libsanitizer
+../gcc-$GCC_VERSION/configure --without-headers --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --disable-nls --enable-libssp --enable-gold --enable-ld --enable-clocale=newlib --target=$TARGET --prefix=$PREFIX --disable-libgomp --with-sysroot=$PREFIX --disable-multilib --disable-libsanitizer
 LD_LIBRARY_PATH=$PREFIX/lib make -j 2
 make install
 cd ../
