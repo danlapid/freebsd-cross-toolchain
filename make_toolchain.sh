@@ -53,7 +53,7 @@ cd gcc-$GCC_VERSION
 ./contrib/download_prerequisites
 cd ../
 mkdir build-gcc; cd build-gcc
-../gcc-$GCC_VERSION/configure --without-headers --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --disable-nls --enable-libssp --enable-gold --enable-ld --enable-clocale=newlib --target=$TARGET --prefix=$PREFIX --disable-libgomp --with-sysroot=$PREFIX --disable-multilib --disable-libsanitizer
+../gcc-$GCC_VERSION/configure --without-headers --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --disable-nls --enable-libssp --enable-gold --enable-ld --enable-clocale=generic --target=$TARGET --prefix=$PREFIX --disable-libgomp --with-sysroot=$PREFIX --disable-multilib --disable-libsanitizer
 LD_LIBRARY_PATH=$PREFIX/lib make -j 2
 make install
 cd ../
